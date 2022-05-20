@@ -7,7 +7,7 @@ exports.createComment = async(req, res, next) => {
     const item = Comment.build({
         content: req.body.content,
         UserId: req.currentuser.userId,
-        PostId: req.body.PostId
+        postId: req.body.PostId
     });
 
     item.save()
@@ -35,7 +35,7 @@ exports.deleteOneComment = (req, res, next) => {
 
 
 exports.GetCommentByPost = (req, res, next) => {
-    Comment.findAll({ where: { PostId: req.params.id }, include: { model: User, attributes: ['username'] } })
+    Comment.findAll({ where: { postId: req.params.id }, include: { model: User, attributes: ['username'] } })
         .then((comments) => { res.status(200).json(comments) })
         .catch((error) => res.status(404).json({ error: error.message }));
 }

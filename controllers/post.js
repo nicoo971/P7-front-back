@@ -76,10 +76,27 @@ exports.createPost = async(req, res, next) => {
         title: req.body.title,
         content: req.body.content,
         UserId: req.currentuser.userId,
+        image: req.file? req.file.filename:""
     });
+    
 
     item.save()
         .then(() => res.status(201).json({ message: 'item créé !' }))
         .catch(error => res.status(500).json({ error }));
+        
 
+};
+exports.addSauce = (req, res, next) => {
+    const SauceObject = JSON.parse(req.body.sauce);
+    delete SauceObject._id;
+    console.log(typeof SauceObject);
+    const sauce = new Sauce({
+        ...SauceObject,
+        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+
+    });
+    sauce
+        .save()
+        .then(() => res.status(201).json({ message: "Objet enregistré !" }))
+        .catch((error) => res.status(400).json({ error }));
 };

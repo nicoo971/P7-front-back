@@ -25,7 +25,7 @@ exports.signup = (req, res, next) => {
     // }
 
     bcrypt.hash(req.body.password, 10).then((hash) => {
-        const encryptedusername = getEncryptedString(req.body.username);
+        const encryptedusername = (req.body.username);//getEncryptedString(req.body.username);
         console.log(encryptedusername);
         const user = User.build({ username: encryptedusername, password: hash });
         user
@@ -36,7 +36,7 @@ exports.signup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-    const encryptedusername = getEncryptedString(req.body.username);
+    const encryptedusername =(req.body.username); //getEncryptedString(req.body.username);
     console.log(encryptedusername);
     User.findOne({ where: { username: encryptedusername, } })
         .then((user) => {

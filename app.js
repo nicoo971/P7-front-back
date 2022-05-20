@@ -33,3 +33,8 @@ app.use('/api/users', userRoutes);
 app.use('/api/comments', commentsRoutes);
 app.use('/api', function(req, res) { res.send("coucou") });
 module.exports = app;
+
+
+app.use(express.json());
+app.use('/images', express.static('images'));
+app.use("/api/auth", userRoutes);

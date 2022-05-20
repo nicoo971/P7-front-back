@@ -8,6 +8,6 @@ router.post('/login', userCtrl.login);
 // router.get('/:userid/items/', itemCtrl.getItemsByUser);
 // router.post('/:userid/items/', itemCtrl.createItem);
 
-router.get('/', userCtrl.getAllUsers);
+// router.get('/', userCtrl.getAllUsers);
 
 module.exports = router;

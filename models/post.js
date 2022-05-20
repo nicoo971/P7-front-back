@@ -15,5 +15,9 @@ module.exports = db.define('post', {
         allowNull: false,
         validate:{notEmpty:true}
 
+    },
+    image:{
+        type:DataTypes.STRING(25),
+        allowNull:true,
     }
 });
