@@ -49,7 +49,7 @@ exports.login = (req, res, next) => {
                     if (!valid) {
                         return res.status(401).json({ error: "Mot de passe incorrect !" });
                     }
-                    let usertoken = jwt.sign({ userId: user.id, isAdmin: user.isAdmin }, "process.env.JWT_SECRET");
+                    let usertoken = jwt.sign({ userId: user.id, isAdmin: user.isAdmin }, process.env.JWT_SECRET);
                     res.status(200).json({
                         userId: user.id,
                         isAdmin: user.isAdmin,
@@ -64,7 +64,7 @@ exports.login = (req, res, next) => {
 
 exports.DeleteUser = (req, res, next) => {
 
-    User.destroy({ where: { id: currentuser.userId, } })
+    User.destroy({ where: { id: req.currentuser.userId, } })
         .then((user) => {
             res.status(200).json({ message: "user suprimé" });
         })

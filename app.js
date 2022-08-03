@@ -1,13 +1,13 @@
 const express = require('express');
+require('dotenv').config();
 const userRoutes = require('./routes/user_rt');
 const postRoutes = require('./routes/post');
 const commentsRoutes = require('./routes/com');
 // const itemRoutes = require('./routes/item_rt');
 
+
 const db = require("./middleware/db-config");
 const dbassoc = require("./models/db_association");
-
-
 
 db.authenticate()
     .then(() => {
@@ -31,7 +31,7 @@ app.use(express.json());
 app.use('/api/post', postRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/comments', commentsRoutes);
-app.use('/api', function(req, res) { res.send("coucou") });
+// app.use('/api', function(req, res) { res.send("coucou") });
 module.exports = app;
 
 
